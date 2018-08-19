@@ -14,4 +14,4 @@ function bark (name, weight)
 }
 
 
-bark("jack", 23)
+bark("jack", 25)
