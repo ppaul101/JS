@@ -20,6 +20,5 @@ console.log(fiat)
 
 
 // removing a property
-
 delete fiat.passengers
 console.log(fiat);
