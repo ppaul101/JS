@@ -1,5 +1,3 @@
-
-
 function bark (name, weight)
 {
   if (weight > 20)
@@ -13,5 +11,7 @@ function bark (name, weight)
 
 }
 
+// TODO: this is how todos work
+// to see the TODOS go to packages > todoshow in the top menu bar
 
 bark("jack", 25)
