@@ -15,7 +15,11 @@ console.log(fiat.passengers)
 
 
 // adding a new property to the fiat object
-
-
 fiat.isClean = true
 console.log(fiat)
+
+
+// removing a property
+
+delete fiat.passengers
+console.log(fiat);
