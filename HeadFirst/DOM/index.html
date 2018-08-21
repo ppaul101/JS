@@ -3,9 +3,19 @@
 
   <title>Planets</title>
 
+  <style>
+
+    .redtext
+    {
+       color: red
+    }
+
+  </style>
+
   <script>
 
   // JS goes here
+  // CSS in 'style' above
 
   // this won't work as the code will run
   // before the p id is defined
@@ -21,14 +31,31 @@
   function init()
   {
     var planet = document.getElementById("greenplanet")
-    planet.innerHTML = "Uh oh! Hit by laser fire"
-    console.log("woof");
+
+    // check plant != null (incorrect Id)
+    if (planet != null)
+    {
+      planet.innerHTML = "Uh oh! Hit by laser fire"
+
+      // set (or modify) a class attribute
+      // will make text red (see redtext in <style> above)
+      planet.setAttribute("class", "redtext")
+
+    }
+    else
+    {
+      console.log("Wrong Id in planet variable!");
+    }
+
+
   }
 
   // NO parentheses
   // we aren't calling a fn
   // just assigning a fn value to window.onload property
   // (of window class)
+  // this is known as an event handler
+  // when the window loads, call the init fn
   window.onload = init
 
 
