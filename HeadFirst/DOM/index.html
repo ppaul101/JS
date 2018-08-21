@@ -1,0 +1,49 @@
+<html>
+<head>
+
+  <title>Planets</title>
+
+  <script>
+
+  // JS goes here
+
+  // this won't work as the code will run
+  // before the p id is defined
+  // will get an error in console
+
+  // var planet = getElementById("greenplanet")
+  // planet.innerHTML = "Uh oh! Hit by laser fire"
+
+  // instead define a function and call it
+  // once the page has fully loaded
+  // fn can be called anything, usually init
+
+  function init()
+  {
+    var planet = document.getElementById("greenplanet")
+    planet.innerHTML = "Uh oh! Hit by laser fire"
+    console.log("woof");
+  }
+
+  // NO parentheses
+  // we aren't calling a fn
+  // just assigning a fn value to window.onload property
+  // (of window class)
+  window.onload = init
+
+
+  </script>
+
+</head>
+
+<body>
+  <h1>Green Planet</h1>
+  <p id="greenplanet">All is well</p>
+  <h1>Red Plent</h1>
+  <p id = "redplanet">Nothing to report</p>
+  <h1>Blue Planet</h1>
+  <p id = "blueplanet">All systems A-OK</p>
+
+</body>
+
+</html>
