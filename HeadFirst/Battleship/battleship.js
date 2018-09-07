@@ -322,4 +322,7 @@ function handleKeyPress(e)
 }
 
 
+
+// onload called after HTML is parsed
+// after </body> in HTML
 window.onload = init
