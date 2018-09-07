@@ -1,0 +1,39 @@
+<html>
+<head>
+  <title> Pirate map</title>
+  <script>
+
+  window.onload = init
+
+  function init()
+  {
+    var map = document.getElementById("map")
+    map.onmousemove = showCoords
+  }
+
+  function showCoords(eventObj)
+  {
+    var x = eventObj.clientX
+    var y = eventObj.clientY
+
+    var coordinates = document.getElementById("coords")
+    coordinates.innerHTML = "Map coordinates: " + x + ", " + y
+
+
+  }
+
+
+
+  </script>
+
+</head>
+
+<body>
+  <img id = "map" src = "map.jpg" >
+  <p id = "coords">
+    Move the mouse to find the coordinates
+  </p>
+
+</body>
+
+</html>
