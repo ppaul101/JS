@@ -1,0 +1,29 @@
+<html>
+<head>
+  <title> Time Handler </title>
+  <script>
+
+  function timerHandlerWoof()
+  {
+    alert("Woof")
+
+    // calls itself every 5s
+    setTimeout(timerHandlerWoof, 5000)
+  }
+
+  // setting the timer
+  // run the handler 'timerHandlerWoof' after 5,000ms = 5s
+  // setTimeout is actually a method of the global window object
+  // for window.onload can also rewrite as onload
+  setTimeout(timerHandlerWoof, 5000)
+
+  // alternatively, use setInterval(timerHandlerWoof, 5000)
+  // to repeatedly call timerHandlerWoof every 5000ms
+
+  </script>
+</head>
+<body>
+
+</body>
+
+</html>
