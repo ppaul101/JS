@@ -1,6 +1,3 @@
-console.log("hi");
-
-
 window.onload = function()
 {
   // anonymouse function
@@ -16,7 +13,7 @@ window.onload = function()
     // don't have to be initialised every time the fn runs :)
     // instead, free variables will be part of the environment of the fn
     // which is part of the closure
-    
+
     numberOfClicks++
     div.innerHTML = message + numberOfClicks + " times!"
   }
