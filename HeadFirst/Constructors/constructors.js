@@ -53,6 +53,7 @@ console.log(grace);
 
 
 
+
 // a MUCH nicer way of dealing with object constructors is by passing in an object literal
 // improves code readibility and programmer less likely to miss a property when initialising a new instance of the object constructor
 
