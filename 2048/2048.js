@@ -292,15 +292,15 @@ function printTable()
                 break;
         case 64:table.rows[i].cells[j].style.color =  "#ff4c00";
                 break;
-        case 128:table.rows[i].cells[j].style.color =  "#ff3f00";
+        case 128:table.rows[i].cells[j].style.color = "#ff3f00";
                 break;
-        case 256:table.rows[i].cells[j].style.color =  "#ff3b00";
+        case 256:table.rows[i].cells[j].style.color = "#ff3b00";
                 break;
-        case 512:table.rows[i].cells[j].style.color =  "#ff2e00";
+        case 512:table.rows[i].cells[j].style.color = "#ff2e00";
                 break;
-        case 1024:table.rows[i].cells[j].style.color =  "#ff1500";
+        case 1024:table.rows[i].cells[j].style.color = "#ff1500";
                 break;
-        case 2048:table.rows[i].cells[j].style.color =  "#ff0000";
+        case 2048:table.rows[i].cells[j].style.color = "#ff0000";
                 break;
         default: table.rows[i].cells[j].style.color = "grey"
 
