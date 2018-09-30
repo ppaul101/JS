@@ -240,8 +240,7 @@ function updateTable()
 
   printTable()
 
-
-
+  // update currentScore
   for (var i = 0; i<game_array.length; i++)
   {
     for (var j = 0; j<game_array[0].length; j++)
