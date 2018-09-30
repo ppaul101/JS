@@ -6,55 +6,35 @@ game_array = [[0, 0, 0, 0],
 
 var currentScore = 0
 var numberOfMoves = 0
+var moveMade = false
 
 window.onload = function()
 {
   updateTable()
 
-  document.onkeydown = function(evt)
+  document.onkeyup = function(evt)
   {
+      moveMade = false
+
       // WASD or arrow keys
       if (evt.key === "w" || evt.keyCode == "38")
       {
-        rotateArrayRight()
-
-        findZeroes()
-        combineAdjacentElements()
-        findZeroes()
-
-        rotateArrayRight()
-        rotateArrayRight()
-        rotateArrayRight()
+        moveUp()
 
         updateTable()
       }
 
       else if (evt.key === "a" || evt.keyCode == "37")
       {
-        rotateArrayRight()
-        rotateArrayRight()
-
-        findZeroes()
-        combineAdjacentElements()
-        findZeroes()
-
-        rotateArrayRight()
-        rotateArrayRight()
+        moveLeft()
 
         updateTable()
       }
 
       else if (evt.key === "s" || evt.keyCode == "40")
       {
-        rotateArrayRight()
-        rotateArrayRight()
-        rotateArrayRight()
 
-        findZeroes()
-        combineAdjacentElements()
-        findZeroes()
-
-        rotateArrayRight()
+        moveDown()
 
         updateTable()
       }
@@ -64,9 +44,7 @@ window.onload = function()
 
         // no rotations necessary :)
 
-        findZeroes()
-        combineAdjacentElements()
-        findZeroes()
+        moveLeft()
         updateTable()
 
       }
@@ -75,6 +53,54 @@ window.onload = function()
   document.getElementById("button").onclick = resetBoard
 
 }
+
+
+function moveUp()
+{
+  rotateArrayRight()
+
+  findZeroes()
+  combineAdjacentElements()
+  findZeroes()
+
+  rotateArrayRight()
+  rotateArrayRight()
+  rotateArrayRight()
+}
+
+function moveLeft()
+{
+  rotateArrayRight()
+  rotateArrayRight()
+
+  findZeroes()
+  combineAdjacentElements()
+  findZeroes()
+
+  rotateArrayRight()
+  rotateArrayRight()
+}
+
+function moveDown()
+{
+  rotateArrayRight()
+  rotateArrayRight()
+  rotateArrayRight()
+
+  findZeroes()
+  combineAdjacentElements()
+  findZeroes()
+
+  rotateArrayRight()
+}
+
+function moveRight()
+{
+  findZeroes()
+  combineAdjacentElements()
+  findZeroes()
+}
+
 
 
 function findZeroes()
@@ -87,6 +113,7 @@ function findZeroes()
       {
         // finds any zeros in the array
         shiftZeroes(i, j)
+        moveMade = true
       }
     }
   }
@@ -133,6 +160,8 @@ function combineAdjacentElements()
         game_array[i][k] = game_array[i][k] * 2
 
         game_array[i][k-1] = 0
+
+        moveMade = true
       }
 
       k = k - 1
@@ -222,7 +251,6 @@ function placeRandomTwo()
 
 function updateTable()
 {
-
   placeRandomTwo()
 
   printTable()
@@ -263,9 +291,134 @@ function updateTable()
     movesElement.innerHTML = "You have made " + numberOfMoves + " moves"
   }
 
-  numberOfMoves++
+  if(moveMade)
+  {
+    numberOfMoves++
+  }
+
+  var moveCanBeMade = checkPossibleMoveLeft()
+
+
+
+  if (!moveCanBeMade)
+  {
+
+    alert("Game Over")
+  }
+
+
+
 
 }
+
+
+function checkPossibleMoveLeft()
+{
+  var original_array = new Array(game_array.length)
+
+  for (var a = 0; a<game_array.length; a++)
+  {
+    original_array[a] = new Array(game_array.length)
+  }
+
+  for (var i = 0; i<game_array.length; i++)
+  {
+    for (var j = 0; j<game_array.length; j++)
+    {
+      original_array[i][j] = game_array[i][j]
+    }
+  }
+
+  moveUp()
+
+
+  for (var i = 0; i<game_array.length; i++)
+  {
+    for (var j = 0; j<game_array.length; j++)
+    {
+      if (original_array[i][j] !== game_array[i][j])
+      {
+        // a change can be made
+
+        // reset game_array back to original
+        copyArray(original_array)
+
+        return true
+      }
+    }
+  }
+
+
+
+
+  moveLeft()
+
+  for (var i = 0; i<game_array.length; i++)
+  {
+    for (var j = 0; j<game_array.length; j++)
+    {
+      if (original_array[i][j] !== game_array[i][j])
+      {
+        // a change can be made
+
+        // reset game_array back to original
+        copyArray(original_array)
+
+        return true
+      }
+    }
+  }
+
+  moveDown()
+  for (var i = 0; i<game_array.length; i++)
+  {
+    for (var j = 0; j<game_array.length; j++)
+    {
+      if (original_array[i][j] !== game_array[i][j])
+      {
+        // a change can be made
+
+        // reset game_array back to original
+        copyArray(original_array)
+
+        return true
+      }
+    }
+  }
+
+  moveRight()
+
+  for (var i = 0; i<game_array.length; i++)
+  {
+    for (var j = 0; j<game_array.length; j++)
+    {
+      if (original_array[i][j] !== game_array[i][j])
+      {
+        // a change can be made
+
+        // reset game_array back to original
+        copyArray(original_array)
+
+        return true
+      }
+    }
+  }
+
+  return false
+
+}
+
+function copyArray(original)
+{
+  for (var i = 0; i<game_array.length; i++)
+  {
+    for (var j = 0; j<game_array.length; j++)
+    {
+      game_array[i][j] = original[i][j]
+    }
+  }
+}
+
 
 function printTable()
 {
@@ -280,29 +433,29 @@ function printTable()
       // make it easier to spot same elements
 
       switch (game_array[i][j]) {
-        case 2: table.rows[i].cells[j].style.color =  "#ffb600"
+        case 2: table.rows[i].cells[j].bgColor =  "#ffb600"
                 break;
-        case 4: table.rows[i].cells[j].style.color =  "#ff9d00";
+        case 4: table.rows[i].cells[j].bgColor =  "#ff9d00";
                 break;
-        case 8: table.rows[i].cells[j].style.color =  "#ff8300";
+        case 8: table.rows[i].cells[j].bgColor =  "#ff8300";
                 break;
-        case 16:table.rows[i].cells[j].style.color =  "#ff6600";
+        case 16:table.rows[i].cells[j].bgColor =  "#ff6600";
                 break;
-        case 32:table.rows[i].cells[j].style.color =  "#ff5900";
+        case 32:table.rows[i].cells[j].bgColor =  "#ff5900";
                 break;
-        case 64:table.rows[i].cells[j].style.color =  "#ff4c00";
+        case 64:table.rows[i].cells[j].bgColor =  "#ff4c00";
                 break;
-        case 128:table.rows[i].cells[j].style.color = "#ff3f00";
+        case 128:table.rows[i].cells[j].bgColor = "#ff3f00";
                 break;
-        case 256:table.rows[i].cells[j].style.color = "#ff3b00";
+        case 256:table.rows[i].cells[j].bgColor = "#ff3b00";
                 break;
-        case 512:table.rows[i].cells[j].style.color = "#ff2e00";
+        case 512:table.rows[i].cells[j].bgColor = "#ff2e00";
                 break;
-        case 1024:table.rows[i].cells[j].style.color = "#ff1500";
+        case 1024:table.rows[i].cells[j].bgColor = "#ff1500";
                 break;
-        case 2048:table.rows[i].cells[j].style.color = "#ff0000";
+        case 2048:table.rows[i].cells[j].bgColor = "#ff0000";
                 break;
-        default: table.rows[i].cells[j].style.color = "grey"
+        default: table.rows[i].cells[j].bgColor = "grey"
 
       }
 
