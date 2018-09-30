@@ -72,20 +72,7 @@ window.onload = function()
       }
   }
 
-  document.getElementById("button").onclick = function()
-  {
-    // restart board and counters
-    game_array = [[0, 0, 0, 0],
-                  [0, 0, 0, 0],
-                  [0, 0, 0, 0],
-                  [0, 0, 0, 0]]
-
-    currentScore = 0
-    numberOfMoves = 0
-
-    // place random 2
-    updateTable()
-  }
+  document.getElementById("button").onclick = resetBoard
 
 }
 
@@ -248,6 +235,13 @@ function updateTable()
       if (game_array[i][j] > currentScore)
       {
         currentScore = game_array[i][j]
+
+        if (currentScore >= 2048)
+        {
+          printTable()
+          alert("Well done! You finished the game in " + numberOfMoves + " moves")
+          resetBoard()
+        }
       }
     }
   }
@@ -282,7 +276,56 @@ function printTable()
     for (var j = 0; j<table.rows[i].cells.length; j++)
     {
       table.rows[i].cells[j].innerHTML = game_array[i][j]
+
+      // make it easier to spot same elements
+
+      switch (game_array[i][j]) {
+        case 2: table.rows[i].cells[j].style.color =  "#ffb600"
+                break;
+        case 4: table.rows[i].cells[j].style.color =  "#ff9d00";
+                break;
+        case 8: table.rows[i].cells[j].style.color =  "#ff8300";
+                break;
+        case 16:table.rows[i].cells[j].style.color =  "#ff6600";
+                break;
+        case 32:table.rows[i].cells[j].style.color =  "#ff5900";
+                break;
+        case 64:table.rows[i].cells[j].style.color =  "#ff4c00";
+                break;
+        case 128:table.rows[i].cells[j].style.color =  "#ff3f00";
+                break;
+        case 256:table.rows[i].cells[j].style.color =  "#ff3b00";
+                 break;
+        case 512:table.rows[i].cells[j].style.color =  "#ff2e00";
+                  break;
+        case 1024:table.rows[i].cells[j].style.color =  "#ff1500";
+                  break;
+        case 2048:table.rows[i].cells[j].style.color =  "#ff0000";
+                  break;
+        default: table.rows[i].cells[j].style.color = "grey"
+
+      }
+
+      // if (game_array[i][j] ===2)
+      // {table.rows[i].cells[j].style.color = "blue"}
     }
   }
+
+}
+
+
+function resetBoard()
+{
+  // restart board and counters
+  game_array = [[0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0]]
+
+  currentScore = 0
+  numberOfMoves = 0
+
+  // place random 2
+  updateTable()
 
 }
