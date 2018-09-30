@@ -295,19 +295,17 @@ function printTable()
         case 128:table.rows[i].cells[j].style.color =  "#ff3f00";
                 break;
         case 256:table.rows[i].cells[j].style.color =  "#ff3b00";
-                 break;
+                break;
         case 512:table.rows[i].cells[j].style.color =  "#ff2e00";
-                  break;
+                break;
         case 1024:table.rows[i].cells[j].style.color =  "#ff1500";
-                  break;
+                break;
         case 2048:table.rows[i].cells[j].style.color =  "#ff0000";
-                  break;
+                break;
         default: table.rows[i].cells[j].style.color = "grey"
 
       }
 
-      // if (game_array[i][j] ===2)
-      // {table.rows[i].cells[j].style.color = "blue"}
     }
   }
 
