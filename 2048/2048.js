@@ -44,7 +44,7 @@ window.onload = function()
 
         // no rotations necessary :)
 
-        moveLeft()
+        moveRight()
         updateTable()
 
       }
