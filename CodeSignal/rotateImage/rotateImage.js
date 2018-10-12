@@ -1,9 +1,20 @@
 window.onload = function() {
 
-  var a = [[1,2,3,4],
-  [5,6,7,8],
-  [9,10,11,12],
-  [13,14,15,16]]
+  // var a = [[1,2,3,4],
+  // [5,6,7,8],
+  // [9,10,11,12],
+  // [13,14,15,16]]
+
+
+  // var a = [[1,2,3,4,5],
+  //         [6,7,8,9,10],
+  //         [11,12,13,14,15],
+  //         [16,17,18,19,20],
+  //         [21,22,23,24,25]]
+
+
+  var a = [[1,2],
+          [3,4]]
 
   console.log(rotateImage(a))
 
@@ -12,64 +23,28 @@ window.onload = function() {
 
 function rotateImage(a)
 {
-  // TEST: rotating outermost edge
 
   var n = a.length
 
-  var innerLayers = n/2
+  var noOfShifts = n-1
 
-  if (n&2 !== 0)
+  var corner = 0
+
+
+  // 2 for odd length, 1 for even
+  while (a.length%2 === 0 && noOfShifts >= 1 || a.length%2!= 0 && noOfShifts >=2)
   {
-    // odd
-    innerLayers = (n-1)/2
+
+    // console.log(corner)
+    a = rotateLayer(corner, noOfShifts, n, a)
+
+    n--
+    corner++
+
+    noOfShifts = noOfShifts - 2
+
+
   }
-
-  // in nested loop - outside first loop?
-  // 4x, just need a dummy var
-
-  // for (var i = 0; i<2; i++)
-  // {
-  //
-  //   var temp1 = a[i][i]
-  //   var temp2 = 0
-  //
-  //   // top row
-  //   for (var j = 0; j<n-1 ; j++)
-  //   {
-  //     temp2 = a[i][j+1]
-  //     a[i][j+1] = temp1
-  //     temp1 = temp2
-  //   }
-  //
-  //   // RHC
-  //   for (var j = 0; j<n-1; j++)
-  //   {
-  //     // a[0][n-1] <-- corner is already done above
-  //     temp2 = a[j+1][n-(i+1)]
-  //     a[j+1][n-(i+1)] = temp1
-  //     temp1 = temp2
-  //   }
-  //
-  //   // btm row
-  //   for (var j = n-1; j>=1 ; j--)
-  //   {
-  //     temp2 = a[n-(i+1)][j-1]
-  //     a[n-(i+1)][j-1] = temp1
-  //     temp1 = temp2
-  //   }
-  //
-  //   // LHC
-  //   for (var j = n-2; j>= 0; j--)
-  //   {
-  //     // n-2 as btm corner already done
-  //     temp2 = a[j][i]
-  //     a[j][i] = temp1
-  //     temp1 = temp2
-  //   }
-  // }
-
-  a = rotateLayer(0, 3, a.length, a)
-  a = rotateLayer(1, 1, 3, a)
 
   return a
 
