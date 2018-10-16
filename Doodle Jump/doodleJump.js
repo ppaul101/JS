@@ -8,17 +8,21 @@ if (canvas == null)
 // tool to paint on the canvas
 var ctx = canvas.getContext("2d")
 
+// loading doodle img
+var doodle = new Image();
+doodle.src = "doodle.png";
 
-var x = canvas.width/2 - 100
+// doodle initial position
+var x = canvas.width/2
 var y = canvas.height - 300
-var dy = -30
+var dy = -10
+var initialSpeed = dy
+var doodle_dx = 8
 
-var startY = y
+// for keyboard entry
+var rightPressed = false
+var leftPressed = false
 
-
-
-
-window.onload = draw
 
 function draw()
 {
@@ -27,26 +31,94 @@ function draw()
 
   drawDoodle()
 
+
+
   // reverse direction after it travels normal height
-  // if (y < canvas.height/2 || y >= startY)
+  if (y < canvas.height/1.4 )
+  {
+    // dy = -dy
+    // dy *= 0.88
+    // dy *= 0.98
+
+    // slow down and come back down
+    dy += 0.4
+
+  }
+
+  if (y>= canvas.height - 300)
+  {
+    // bounce up
+    dy = initialSpeed
+  }
+
+
+  // if (count >= 14 && count <= 18)
   // {
-  //   dy = -dy
+  //   dy -= 0.8
   // }
+
+
+
+
+
+  if (leftPressed && x>0)
+  {
+    x -= doodle_dx
+  }
+
+  else if (rightPressed && x + 175<canvas.width)
+  {
+    x += doodle_dx
+  }
 
   y+=dy
 
 }
-setInterval(draw, 10)
+setInterval(draw, 8)
+
 
 
 function drawDoodle()
 {
   ctx.beginPath()
-  var img = new Image();
-  img.src = "doodle.png";
-  img.onload = function()
+  ctx.drawImage(doodle, x, y, 175, 175);
+  ctx.closePath()
+}
+
+
+
+
+function keyDownHandler(e)
+{
+
+  if (e.keyCode == 39 || e.key == "d" || e.key == "D")
   {
-    // x, y, scale
-    ctx.drawImage(img, x, y, 175, 175);
+
+    rightPressed = true
+  }
+
+  else if (e.keyCode === 37 || e.key == "a" || e.key == "A")
+  {
+    leftPressed = true
   }
 }
+
+function keyUpHandler(e)
+{
+
+  if (e.keyCode == 39 || e.key == "d" || e.key == "D")
+  {
+    rightPressed = false
+  }
+
+  else if (e.keyCode === 37 || e.key == "a"|| e.key == "A")
+  {
+    leftPressed = false
+  }
+}
+
+// respond to keys being pressed/lifted
+// false => events will be bubbled from child to parent
+// ie actions will first occur on child, then parent objects
+document.addEventListener("keydown", keyDownHandler, false)
+document.addEventListener("keyup", keyUpHandler, false)
