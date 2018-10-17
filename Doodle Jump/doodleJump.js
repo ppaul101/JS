@@ -41,16 +41,8 @@ var platformY = canvas.height - platformHeight
 var rightPressed = false
 var leftPressed = false
 
-var t = true
-
 function draw()
 {
-  if (t)
-  {
-  console.log(doodle.width)
-  t = false
-  }
-
   // clear previous frame - illusion of movement
   ctx.clearRect(0, 0, canvas.width, canvas.height)
 
